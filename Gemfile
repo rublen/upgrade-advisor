@@ -61,4 +61,4 @@ end
 
 gem "neighbor", "~> 1.2"
 
-gem "rspec-rails", "~> 8.1", groups: [:development, :test]
+gem "rspec-rails", "~> 8.1", groups: [ :development, :test ]
