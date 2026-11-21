@@ -403,6 +403,7 @@ DEPENDENCIES
   brakeman
   bundler-audit
   debug
+  dotenv
   faraday (~> 2.15)
   importmap-rails
   jbuilder

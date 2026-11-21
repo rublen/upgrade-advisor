@@ -38,5 +38,11 @@ module UpgradeAdvisor
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # No image_processing gem: Active Storage image variants are not used.
+    config.active_storage.variant_processor = :disabled
+
+    # LLM and embedding models configuration
+    config.x.models = config_for(:models)
   end
 end

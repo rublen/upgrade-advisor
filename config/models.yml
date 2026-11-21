@@ -1,0 +1,11 @@
+# Values may be blank at boot (asset precompile, CI audits)
+# Code that calls the models must raise a clear error if a value is missing
+shared:
+  embedding:
+    base_url: <%= ENV["EMBEDDING_BASE_URL"] %>
+    model:    <%= ENV["EMBEDDING_MODEL"] %>
+  llm:
+    base_url:       <%= ENV["LLM_BASE_URL"] %>
+    model:          <%= ENV["LLM_MODEL"] %>
+    fallback_model: <%= ENV["LLM_FALLBACK_MODEL"].presence %>
+    api_key:        <%= ENV["LLM_API_KEY"] %>

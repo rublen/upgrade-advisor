@@ -6,7 +6,7 @@ VCR.configure do |config|
   config.hook_into :webmock
   # Tag a spec with `:vcr` to record/replay its HTTP calls in a cassette named after the spec.
   config.configure_rspec_metadata!
-  config.ignore_localhost = true
+  # config.ignore_localhost = true # disable not to run models in tests (important for CI)
   # Hide secrets in recorded cassettes, e.g.:
   # config.filter_sensitive_data("<API_KEY>") { ENV["SOME_API_KEY"] }
 end

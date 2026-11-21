@@ -47,6 +47,7 @@ group :development, :test do
   gem "bundler-audit", require: false
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
+  gem "dotenv" # loads environment variables from `.env` file
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
   gem "rspec-rails", "~> 8.1"
