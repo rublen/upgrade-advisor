@@ -1,8 +1,15 @@
 class Embedder
+  NO_PREFIXES = { query: "", document: "" }.freeze
+  PREFIXES = {
+    "nomic-embed-text" => { query: "search_query: ", document: "search_document: " }
+    # "bge-m3" => NO_PREFIXES,
+  }.freeze
+
   # @param texts [String, Array<String>] [ "text1", "text2", ... ]
+  # @param role [Symbol] :query or :document
   # @return [Array<Array<Float>>] [ [vector1],  [vector2], ... ]
-  def self.call(texts)
-    self.new(texts).embed
+  def self.call(texts, role:)
+    self.new(texts, role).embed
   end
 
   def embed
@@ -15,8 +22,9 @@ class Embedder
 
   private
 
-  def initialize(texts)
+  def initialize(texts, role)
     @texts = texts
+    @role = role
   end
 
   def connection
@@ -27,7 +35,7 @@ class Embedder
   end
 
   def params
-    { model: model, input: @texts, truncate: false }
+    { model: model, input: prepared_texts, truncate: false }
   end
 
   def base_url
@@ -40,5 +48,16 @@ class Embedder
 
   def config
     Rails.application.config.x.models.embedding
+  end
+
+  def prepared_texts
+    return "#{task_instruction_prefix}#{@texts}" if @texts.is_a? String
+
+    @texts.map { |text| "#{task_instruction_prefix}#{text}" }
+  end
+
+  def task_instruction_prefix
+    prefixes = PREFIXES.fetch(model.split(":").first) { raise "No prefixes defined for embedding model #{model}" }
+    prefixes.fetch(@role) # KeyError for an unknown role
   end
 end

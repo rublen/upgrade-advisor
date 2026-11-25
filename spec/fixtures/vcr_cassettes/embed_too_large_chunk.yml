@@ -5,79 +5,79 @@ http_interactions:
     uri: http://localhost:11434/api/embed
     body:
       encoding: UTF-8
-      string: '{"model":"nomic-embed-text:v1.5","input":"Story\nThe Maestro and the
-        Patron\n\nFilippo dipped his brush and began to paint. He was adding the finishing
-        touches to the Maestro’s largest work yet. The huge canvas was exquisite.
-        It depicted a view of the city, celebrating its intricate streets, grand architecture
-        and mighty walls.\nAround the studio, assistants were busy working on the
-        Maestro’s other commissions. The Maestro painted the most important sections
-        himself, but backgrounds and secondary figures were delegated to assistants
-        like Filippo.\nOnce Filippo began to paint, his brush flowed almost with a
-        life of its own. He was the Maestro’s most trusted assistant, but the Maestro
-        also feared him. Filippo’s skill was exceptional, and his own creative ideas
-        were brilliant. The Maestro worked hard to keep Filippo in his place.\n“Truly
-        a masterpiece,” said a voice behind Filippo.\nFilippo hadn’t noticed: the
-        Maestro’s patron had made a surprise visit to inspect the work. The patron
-        was standing behind him, watching, with the Maestro by his side.\n“Everyone
-        who sees it in the Council Chamber will be awed.”\n“Indeed,” said the Maestro.
-        “Every nobleman in the city will hear of your civic pride, wealth and generosity.”\n“But
-        what is this?” the patron said, pointing to the background that Filippo had
-        painted.\n“That shows the landscape beyond the city,” said Filippo. “The hills
-        and forests in this area are truly beautiful.”\n“I asked for a painting to
-        celebrate the city, not the grass!”\nThe Maestro looked at Filippo angrily.
-        “I told you to paint the city walls there,” he said sternly.\nThen the patron
-        gasped. “Who are these figures?”\nHe was pointing to the people in the streets
-        in the foreground. Filippo had added peasants, poor children and beggars.\n“Those
-        are the real people who live in the city,” said Filippo. “Without those people,
-        the city couldn’t exist.”\n“Are you mad?” the patron asked the Maestro. “We
-        can’t display beggars in the Council Chamber!”\n“I assure you, sir, these
-        were not my instructions,” said the Maestro quickly. “I will personally change
-        those figures for noblemen this afternoon.”\nAfter the patron had left, the
-        Maestro screamed at Filippo for ten minutes. Filippo argued back. He believed
-        passionately that the city’s greatness and beauty included both rich and poor,
-        both architecture and landscape.\nAt last, the Maestro shouted: “Get your
-        things, leave my studio, and never return.”\nFilippo carried everything he
-        owned in a small satchel. He wandered the same streets that he had been painting.
-        He greeted the peasants, gave bread to the children, and gave his last coins
-        to a beggar. At last he sat down in the market square and wept.\nHis career
-        as an artist was over. No other maestro would accept him now.\nHe pulled a
-        sheet of rough paper from his satchel, and a stick of charcoal. He began to
-        sketch furiously. He captured the market stalls, the traders and the peasants;
-        the muddy streets and the detritus; and the shadow of the palace. Soon, he
-        forgot about his misery and was absorbed in the work.\n“I have never seen
-        art with such honesty,” said a voice behind him. It was a nobleman who had
-        stopped to watch.\nFilippo stood up to show respect. The nobleman asked which
-        studio Filippo worked for. Filippo explained.\n“Then I shall provide you with
-        a space, assistants and all the materials you need. Make a painting from your
-        sketch, and I’ll donate it to the new hospital. Every patient, rich or poor,
-        will see it.”\n“But that will cost —”\n“It will be worth it. There are thousands
-        of paintings throughout this city, but very little art. You should see the
-        rubbish they display in the Council Chamber.”\n\nStory\nA Brilliant Script\n\nDominic
-        turns on the lamp and sits down. He drinks his coffee. Finally, he has an
-        idea.\nHe starts typing on his laptop. He is writing a script for a film.\n“Everything
-        is silent,” he writes. “The security guard is sleeping. The secret letters
-        are on the desk. The spy moves closer. Quietly, she —”\nBang! Dominic jumps.
-        The coffee spills on the laptop. The laptop stops working. The screen says:
-        “Error!”\nThere are green and yellow lights outside the window. People are
-        clapping. Dominic’s neighbour is having a party. She is a famous film director.
-        Bang! Another firework explodes in the director’s garden.\nIn the bin, beside
-        Dominic’s desk, there is a letter. It says: “Please come to my party. We’re
-        celebrating my new film, ‘Sorry, Mr Spy’. Your script is about a spy too,
-        isn’t it? Please tell me about it!”\nDominic closes the curtains. He cleans
-        the laptop. He turns it off, then he turns it on again. It’s working.\nHe
-        starts a new script.\n“The film director is having a party,” he writes. “Her
-        new film, ‘The Apology’, is very popular. In the middle of the party, her
-        neighbour arrives.\n“He’s angry. ‘Your films are rubbish,’ he says. ‘Popular,
-        but rubbish. I’m writing a script that is brilliant. But I can’t finish it,
-        because you’re making so much noise!’\n“The next day, the director comes to
-        apologise. She wants to read his script. But he closes the door. Finally,
-        the director of ‘The Apology’ feels sorry. The End.”\nDominic smiles. Then
-        he clicks Delete.\nThe next day, someone knocks on Dominic’s door. It’s the
-        director.\n“Your new script is fantastic!” she says.\n“What?”\n“The director
-        who feels sorry! I love it.”\nDominic runs to his laptop. His script is still
-        there. The laptop is emailing the script to everyone in his contacts. The
-        screen still says: “Error!”\n“But I —”\n“What a brilliant idea, Dominic, to
-        make the film here, in my garden! Everyone’s ready – we’re starting today.
+      string: '{"model":"nomic-embed-text:v1.5","input":"search_document: Story\nThe
+        Maestro and the Patron\n\nFilippo dipped his brush and began to paint. He
+        was adding the finishing touches to the Maestro’s largest work yet. The huge
+        canvas was exquisite. It depicted a view of the city, celebrating its intricate
+        streets, grand architecture and mighty walls.\nAround the studio, assistants
+        were busy working on the Maestro’s other commissions. The Maestro painted
+        the most important sections himself, but backgrounds and secondary figures
+        were delegated to assistants like Filippo.\nOnce Filippo began to paint, his
+        brush flowed almost with a life of its own. He was the Maestro’s most trusted
+        assistant, but the Maestro also feared him. Filippo’s skill was exceptional,
+        and his own creative ideas were brilliant. The Maestro worked hard to keep
+        Filippo in his place.\n“Truly a masterpiece,” said a voice behind Filippo.\nFilippo
+        hadn’t noticed: the Maestro’s patron had made a surprise visit to inspect
+        the work. The patron was standing behind him, watching, with the Maestro by
+        his side.\n“Everyone who sees it in the Council Chamber will be awed.”\n“Indeed,”
+        said the Maestro. “Every nobleman in the city will hear of your civic pride,
+        wealth and generosity.”\n“But what is this?” the patron said, pointing to
+        the background that Filippo had painted.\n“That shows the landscape beyond
+        the city,” said Filippo. “The hills and forests in this area are truly beautiful.”\n“I
+        asked for a painting to celebrate the city, not the grass!”\nThe Maestro looked
+        at Filippo angrily. “I told you to paint the city walls there,” he said sternly.\nThen
+        the patron gasped. “Who are these figures?”\nHe was pointing to the people
+        in the streets in the foreground. Filippo had added peasants, poor children
+        and beggars.\n“Those are the real people who live in the city,” said Filippo.
+        “Without those people, the city couldn’t exist.”\n“Are you mad?” the patron
+        asked the Maestro. “We can’t display beggars in the Council Chamber!”\n“I
+        assure you, sir, these were not my instructions,” said the Maestro quickly.
+        “I will personally change those figures for noblemen this afternoon.”\nAfter
+        the patron had left, the Maestro screamed at Filippo for ten minutes. Filippo
+        argued back. He believed passionately that the city’s greatness and beauty
+        included both rich and poor, both architecture and landscape.\nAt last, the
+        Maestro shouted: “Get your things, leave my studio, and never return.”\nFilippo
+        carried everything he owned in a small satchel. He wandered the same streets
+        that he had been painting. He greeted the peasants, gave bread to the children,
+        and gave his last coins to a beggar. At last he sat down in the market square
+        and wept.\nHis career as an artist was over. No other maestro would accept
+        him now.\nHe pulled a sheet of rough paper from his satchel, and a stick of
+        charcoal. He began to sketch furiously. He captured the market stalls, the
+        traders and the peasants; the muddy streets and the detritus; and the shadow
+        of the palace. Soon, he forgot about his misery and was absorbed in the work.\n“I
+        have never seen art with such honesty,” said a voice behind him. It was a
+        nobleman who had stopped to watch.\nFilippo stood up to show respect. The
+        nobleman asked which studio Filippo worked for. Filippo explained.\n“Then
+        I shall provide you with a space, assistants and all the materials you need.
+        Make a painting from your sketch, and I’ll donate it to the new hospital.
+        Every patient, rich or poor, will see it.”\n“But that will cost —”\n“It will
+        be worth it. There are thousands of paintings throughout this city, but very
+        little art. You should see the rubbish they display in the Council Chamber.”\n\nStory\nA
+        Brilliant Script\n\nDominic turns on the lamp and sits down. He drinks his
+        coffee. Finally, he has an idea.\nHe starts typing on his laptop. He is writing
+        a script for a film.\n“Everything is silent,” he writes. “The security guard
+        is sleeping. The secret letters are on the desk. The spy moves closer. Quietly,
+        she —”\nBang! Dominic jumps. The coffee spills on the laptop. The laptop stops
+        working. The screen says: “Error!”\nThere are green and yellow lights outside
+        the window. People are clapping. Dominic’s neighbour is having a party. She
+        is a famous film director. Bang! Another firework explodes in the director’s
+        garden.\nIn the bin, beside Dominic’s desk, there is a letter. It says: “Please
+        come to my party. We’re celebrating my new film, ‘Sorry, Mr Spy’. Your script
+        is about a spy too, isn’t it? Please tell me about it!”\nDominic closes the
+        curtains. He cleans the laptop. He turns it off, then he turns it on again.
+        It’s working.\nHe starts a new script.\n“The film director is having a party,”
+        he writes. “Her new film, ‘The Apology’, is very popular. In the middle of
+        the party, her neighbour arrives.\n“He’s angry. ‘Your films are rubbish,’
+        he says. ‘Popular, but rubbish. I’m writing a script that is brilliant. But
+        I can’t finish it, because you’re making so much noise!’\n“The next day, the
+        director comes to apologise. She wants to read his script. But he closes the
+        door. Finally, the director of ‘The Apology’ feels sorry. The End.”\nDominic
+        smiles. Then he clicks Delete.\nThe next day, someone knocks on Dominic’s
+        door. It’s the director.\n“Your new script is fantastic!” she says.\n“What?”\n“The
+        director who feels sorry! I love it.”\nDominic runs to his laptop. His script
+        is still there. The laptop is emailing the script to everyone in his contacts.
+        The screen still says: “Error!”\n“But I —”\n“What a brilliant idea, Dominic,
+        to make the film here, in my garden! Everyone’s ready – we’re starting today.
         I know, we work too hard – but we have a lot of parties too! Dominic? Are
         you alright?”\n\nStory\nA Table for Three\n\nThe chef placed the plates on
         the counter. The steak was perfect. The vegetables were fresh and tender.
@@ -179,11 +179,11 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 24 Nov 2026 19:05:53 GMT
+      - Wed, 25 Nov 2026 16:29:11 GMT
       Content-Length:
       - '55'
     body:
       encoding: UTF-8
       string: '{"error":"the input length exceeds the context length"}'
-  recorded_at: Tue, 24 Nov 2026 19:05:53 GMT
+  recorded_at: Wed, 25 Nov 2026 16:29:11 GMT
 recorded_with: VCR 6.4.1
