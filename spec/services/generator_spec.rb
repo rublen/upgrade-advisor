@@ -11,9 +11,11 @@ RSpec.describe Generator, "with the configured provider" do
     VCR.use_cassette("generate answer") do
       result = described_class.call(
         system: "Answer only from the given changelog entries and cite their ids.",
-        prompt: "#{context}\nQuestion: What changed in Active Record in Rails 7.1?"
+        prompt: "#{context}\nQuestion: What changed in Active Record in Rails 7.1?",
+        chunk_ids: [ 11, 12 ]
       )
 
+      expect(result).to be_valid, -> { "errors: #{result.errors}" }
       expect(result.answer).to include("summary" => be_a(String), "covered" => true)
       expect(result.answer["items"]).to all(include("claim", "version", "kind", "chunk_ids"))
       expect(result.answer["items"].flat_map { |item| item["chunk_ids"] }).to all(be_in([ 11, 12 ]))
@@ -24,7 +26,7 @@ RSpec.describe Generator, "with the configured provider" do
 end
 
 RSpec.describe Generator do
-  subject(:result) { described_class.call(system: "Be brief.", prompt: "What changed?") }
+  subject(:result) { described_class.call(system: "Be brief.", prompt: "What changed?", chunk_ids: [ 11 ]) }
 
   let(:config) { { base_url: "https://llm.example.com/v1", model: "main-model", fallback_model: nil, api_key: "secret-key" } }
   let(:completions_url) { "https://llm.example.com/v1/chat/completions" }
@@ -57,6 +59,8 @@ RSpec.describe Generator do
 
     expect(result).to be_a(Generator::Result)
     expect(result.answer).to eq answer
+    expect(result.errors).to be_empty
+    expect(result).to be_valid
     expect(result.model).to eq "main-model"
     expect(result.usage).to include("total_tokens" => 140)
     expect(result.duration).to be >= 0
@@ -87,9 +91,42 @@ RSpec.describe Generator do
   it "passes a custom temperature" do
     stub = stub_request(:post, completions_url).with(body: hash_including("temperature" => 0.7)).to_return(completion(answer))
 
-    described_class.call(system: "Be brief.", prompt: "What changed?", temperature: 0.7)
+    described_class.call(system: "Be brief.", prompt: "What changed?", chunk_ids: [ 11 ], temperature: 0.7)
 
     expect(stub).to have_been_requested
+  end
+
+  context "with an answer that breaks the rules" do
+    before do
+      bad_answer = answer.merge("items" => [ answer["items"][0].merge("chunk_ids" => [ 99 ]) ])
+      stub_request(:post, completions_url).to_return(completion(bad_answer))
+    end
+
+    it "returns it with the validation errors instead of raising" do
+      expect(result).not_to be_valid
+      expect(result.errors).to eq [ "cited chunk IDs not in the context: 99" ]
+      expect(result.answer["items"][0]["chunk_ids"]).to eq [ 99 ]
+    end
+  end
+
+  {
+    "no content" => nil,
+    "an empty content" => "",
+    "content that is not JSON" => "Sure! Composite primary keys were added.",
+    "a JSON array instead of an object" => "[1, 2]"
+  }.each do |reply, content|
+    context "when the model returns #{reply}" do
+      before do
+        stub_request(:post, completions_url).to_return(
+          status: 200, headers: { "Content-Type" => "application/json" },
+          body: { choices: [ { message: { role: "assistant", content: content } } ] }.to_json
+        )
+      end
+
+      it "raises InvalidAnswer naming the model" do
+        expect { result }.to raise_error Generator::InvalidAnswer, /\Amain-model returned/
+      end
+    end
   end
 
   {

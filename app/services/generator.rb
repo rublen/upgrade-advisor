@@ -1,4 +1,6 @@
 class Generator
+  class InvalidAnswer < StandardError; end
+
   FALLBACK_ERRORS = [ Faraday::TooManyRequestsError, Faraday::ServerError, Faraday::ResourceNotFound ].freeze
   ANSWER_SCHEMA = {
     type: "object",
@@ -19,29 +21,53 @@ class Generator
     additionalProperties: false
   }.freeze
 
-  # answer: the parsed JSON matching ANSWER_SCHEMA; the rest describes how it was produced
-  Result = Data.define(:answer, :model, :usage, :duration)
+  # answer: the parsed JSON answer; errors: problems found by AnswerValidator; the rest describes how it was produced
+  Result = Data.define(:answer, :errors, :model, :usage, :duration) do
+    def valid? = errors.empty?
+  end
 
   # @param system [String] message for a system role
   # @param prompt [String] message for a user role
+  # @param chunk_ids [Array<Integer>] IDs of the chunks in the prompt's context; the answer may cite only these
   # @param temperature [Numeric] 0 by default: repeatable answers for evaluation
   # @return [Generator::Result]
   #   answer:   { "summary" => "...",
   #               "items" => [{ "claim" => "...", "version" => "...", "kind" => "...", "chunk_ids" => [1, 2]}, ...],
   #               "covered" => true }
+  #   errors:   [ "cited chunk IDs not in the context: 99", ... ], empty if valid
   #   model:    the model that answered (LLM_MODEL, or LLM_FALLBACK_MODEL after a fallback)
   #   usage:    { "prompt_tokens" => 120, "completion_tokens" => 45, "total_tokens" => 165, ... }
   #   duration: seconds for the whole call, including a failed attempt before a fallback
-  def self.call(system:, prompt:, temperature: 0)
+  # @raise [Generator::InvalidAnswer] if the reply has no content or isn't a JSON object
+  def self.call(system:, prompt:, chunk_ids:, temperature: 0)
     started_at = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     response, model_name = self.new.generate(system, prompt, temperature)
     duration = Process.clock_gettime(Process::CLOCK_MONOTONIC) - started_at
 
     body = JSON.parse(response.body)
-    json_answer = body.fetch("choices")[0]["message"]["content"]
+    answer = parse_answer(body, model_name)
 
-    Result.new(answer: JSON.parse(json_answer), model: model_name, usage: body["usage"], duration: duration)
+    Result.new(
+      answer: answer,
+      errors: AnswerValidator.new(answer, chunk_ids).errors,
+      model: model_name,
+      usage: body["usage"],
+      duration: duration
+    )
   end
+
+  def self.parse_answer(body, model_name)
+    content = body.dig("choices", 0, "message", "content")
+    raise InvalidAnswer, "#{model_name} returned no content" if content.blank?
+
+    answer = JSON.parse(content)
+    raise InvalidAnswer, "#{model_name} returned JSON that is not an object: #{content.truncate(200)}" unless answer.is_a?(Hash)
+
+    answer
+  rescue JSON::ParserError
+    raise InvalidAnswer, "#{model_name} returned invalid JSON: #{content.truncate(200)}"
+  end
+  private_class_method :parse_answer
 
   # @return [Array(Faraday::Response, String)] the response and the model that produced it
   def generate(system, prompt, temperature)

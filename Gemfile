@@ -39,6 +39,7 @@ gem "thruster", require: false
 
 gem "faraday", "~> 2.15" # HTTP client library
 gem "neighbor", "~> 1.2" # Nearest neighbor and vector similarity search
+gem "json_schemer", "~> 2.5" # Validates LLM answers against a JSON Schema
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
