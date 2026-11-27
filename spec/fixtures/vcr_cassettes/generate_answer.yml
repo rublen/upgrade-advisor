@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:11434/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"llama3.2:3b","messages":[{"role":"system","content":"Answer
+        only from the given changelog entries and cite their ids."},{"role":"user","content":"Context
+        entries:\n[id=11] Rails 7.1.0, Active Record: Add composite primary key support.\n[id=12]
+        Rails 7.1.0, Active Support: Deprecate `ActiveSupport::Deprecation.warn` singleton
+        usage.\n\nQuestion: What changed in Active Record in Rails 7.1?"}],"response_format":{"type":"json_schema","json_schema":{"name":"answer","strict":true,"schema":{"type":"object","properties":{"summary":{"type":"string","description":"A
+        short overall answer of two or three sentences"},"items":{"type":"array","items":{"type":"object","properties":{"claim":{"type":"string","description":"One
+        change, stated in one sentence, supported by the cited entries."},"version":{"type":"string","description":"Rails
+        version of the cited entry, e.g. \"7.1.0\"."},"kind":{"type":"string","enum":["breaking","deprecation","feature","fix","other"]},"chunk_ids":{"type":"array","items":{"type":"integer"},"minItems":1,"description":"IDs
+        of the entries that support the claim. Use only IDs given in the context."}},"required":["claim","version","kind","chunk_ids"],"additionalProperties":false}},"covered":{"type":"boolean","description":"false
+        if the entries do not answer the question; then items must be empty."}},"required":["summary","items","covered"],"additionalProperties":false}}},"temperature":0,"stream":false}'
+    headers:
+      User-Agent:
+      - Faraday v2.15.1
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Nov 2026 21:15:17 GMT
+      Content-Length:
+      - '549'
+    body:
+      encoding: UTF-8
+      string: '{"id":"chatcmpl-422","object":"chat.completion","created":1795814117,"model":"llama3.2:3b","system_fingerprint":"fp_ollama","choices":[{"index":0,"message":{"role":"assistant","content":"{
+        \"summary\": \"Composite primary key support\", \"items\": [ { \"claim\":
+        \"Added support for composite primary keys\", \"version\": \"Rails 7.1.0\",\"kind\":
+        \"feature\",\"chunk_ids\": [11] } ],\"covered\": true }"},"finish_reason":"stop"}],"usage":{"prompt_tokens":106,"prompt_tokens_details":{"cached_tokens":75},"completion_tokens":65,"total_tokens":171}}
+
+        '
+  recorded_at: Fri, 27 Nov 2026 21:15:17 GMT
+recorded_with: VCR 6.4.1
